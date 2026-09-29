@@ -6,78 +6,137 @@
 
     <title>CRM & Business Management System</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f8fa;
+            color: #24292f;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            padding: 40px 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            border-bottom: 1px solid #d0d7de;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            margin-top: 35px;
+            border-bottom: 1px solid #d8dee4;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            margin-top: 25px;
+        }
+
+        p {
             line-height: 1.7;
         }
 
-        h1, h2, h3 {
-            margin-top: 30px;
+        ul, ol {
+            line-height: 1.8;
         }
 
         pre {
-            background: #f4f4f4;
-            padding: 15px;
-            overflow-x: auto;
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
             border-radius: 6px;
+            padding: 16px;
+            overflow-x: auto;
         }
 
         code {
-            font-family: Consolas, monospace;
+            font-family: Consolas, "Courier New", monospace;
+        }
+
+        :not(pre) > code {
+            background: #f0f2f4;
+            padding: 3px 6px;
+            border-radius: 4px;
         }
 
         table {
             border-collapse: collapse;
             width: 100%;
+            margin: 20px 0;
         }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+        th,
+        td {
+            border: 1px solid #d0d7de;
+            padding: 8px 12px;
+            text-align: left;
         }
 
         blockquote {
-            border-left: 4px solid #ccc;
-            padding-left: 15px;
+            border-left: 4px solid #d0d7de;
+            padding-left: 16px;
+            color: #57606a;
         }
 
-        img {
-            max-width: 100%;
+        a {
+            color: #0969da;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div id="readme">
-        Loading README...
-    </div>
+<div class="container" id="readme">
+    Loading README...
+</div>
 
-    <script>
-        fetch('./README.md')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('README.md could not be loaded');
-                }
+<script type="module">
 
-                return response.text();
-            })
-            .then(markdown => {
-                document.getElementById('readme').innerHTML =
-                    marked.parse(markdown);
-            })
-            .catch(error => {
-                document.getElementById('readme').innerHTML =
-                    '<h2>Error loading README.md</h2>' +
-                    '<p>' + error.message + '</p>';
-            });
-    </script>
+    import { marked } from "./node_modules/marked/lib/marked.esm.js";
+
+    fetch("./README.md")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("README.md could not be loaded.");
+            }
+
+            return response.text();
+        })
+        .then(markdown => {
+
+            document.getElementById("readme").innerHTML =
+                marked.parse(markdown);
+
+        })
+        .catch(error => {
+
+            document.getElementById("readme").innerHTML = `
+                <h2>Unable to load README</h2>
+                <p>${error.message}</p>
+            `;
+
+        });
+
+</script>
 
 </body>
 </html>

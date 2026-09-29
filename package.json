@@ -1,0 +1,23 @@
+{
+  "name": "crm-readme",
+  "version": "1.0.0",
+  "description": "A comprehensive **CRM and Business Management System** designed to help organizations manage their customers, leads, projects, tasks, finance, and employees from a centralized platform.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shikha8615/crm-business-management.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shikha8615/crm-business-management/issues"
+  },
+  "homepage": "https://github.com/Shikha8615/crm-business-management#readme",
+  "dependencies": {
+    "marked": "^18.0.14"
+  }
+}
