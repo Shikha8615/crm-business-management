@@ -3,39 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>CRM & Business Management System</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 {
+            margin-top: 30px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            overflow-x: auto;
+            border-radius: 6px;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        blockquote {
+            border-left: 4px solid #ccc;
+            padding-left: 15px;
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>CRM & Business Management System</h1>
+    <div id="readme">
+        Loading README...
+    </div>
 
-    <p>
-        A comprehensive CRM and Business Management System designed to help
-        organizations manage customers, leads, projects, tasks, finance,
-        and employees from a centralized platform.
-    </p>
-
-    <h2>Project Overview</h2>
-
-    <p>
-        The system provides a centralized platform for managing
-        day-to-day business activities.
-    </p>
-
-    <h2>Key Features</h2>
-
-    <ul>
-        <li>Dashboard</li>
-        <li>Lead Management</li>
-        <li>Deal Management</li>
-        <li>Task Management</li>
-        <li>Project Management</li>
-        <li>Finance Management</li>
-        <li>Employee Management</li>
-        <li>Attendance Management</li>
-        <li>Leave Management</li>
-        <li>Payroll Management</li>
-    </ul>
+    <script>
+        fetch('./README.md')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('README.md could not be loaded');
+                }
+                return response.text();
+            })
+            .then(markdown => {
+                document.getElementById('readme').innerHTML =
+                    marked.parse(markdown);
+            })
+            .catch(error => {
+                document.getElementById('readme').innerHTML =
+                    '<h2>Error loading README.md</h2>' +
+                    '<p>' + error.message + '</p>';
+            });
+    </script>
 
 </body>
 </html>
