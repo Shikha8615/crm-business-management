@@ -46,6 +46,10 @@
             border-left: 4px solid #ccc;
             padding-left: 15px;
         }
+
+        img {
+            max-width: 100%;
+        }
     </style>
 </head>
 
@@ -61,6 +65,7 @@
                 if (!response.ok) {
                     throw new Error('README.md could not be loaded');
                 }
+
                 return response.text();
             })
             .then(markdown => {
